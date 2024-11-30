@@ -4,6 +4,7 @@ const nodemailer = require("nodemailer");
 const User = require("../models/user.schema.js");
 const bcrypt = require("bcrypt");
 const { hashPassword, comparePassword } = require("../secure/hashPassword.js");
+const path = require("path");
 
 
 // User Registration
@@ -46,6 +47,8 @@ const register = async (req, res) => {
     res
       .status(500)
       .json({ message: "Error registering user", error: error.message });
+ 
+
   }
 };
 
