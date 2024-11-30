@@ -1,4 +1,3 @@
-"# Quiz--Application" 
 # Quiz Application API
 
 This project provides an API for creating, managing, and taking quizzes.
@@ -218,3 +217,7 @@ This project provides an API for creating, managing, and taking quizzes.
         "incorrectAnswers": 0
     }
     ```
+
+
+
+
