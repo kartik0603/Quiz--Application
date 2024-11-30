@@ -58,9 +58,9 @@ const getQuizById = async (req, res) => {
 
 // Submit quiz answers and calculate score
 const submitQuiz = async (req, res) => {
-    const { quizId, answers, username } = req.body;
+    const { quizId, answers, name } = req.body;
 
-    if (!quizId || !answers || answers.length === 0 || !username) {
+    if (!quizId || !answers || answers.length === 0 || !name) {
         return res.status(400).json({ message: 'Quiz ID, answers, and username are required.' });
     }
 
@@ -94,7 +94,7 @@ const submitQuiz = async (req, res) => {
         return res.status(200).json({
             message: 'Quiz submitted successfully.',
             score,
-            username,
+            name,
             correctAnswers,
             incorrectAnswers,
         });
