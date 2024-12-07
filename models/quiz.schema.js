@@ -1,25 +1,25 @@
 const mongoose = require('mongoose');
 
-// Schema for each question
+
 const questionSchema = new mongoose.Schema({
-    questionText: { type: String, required: true }, // The actual question
+    questionText: { type: String, required: true },  
     answerChoices: [
         {
-            optionText: { type: String, required: true }, // Option text (e.g., "A", "B", etc.)
-            isCorrect: { type: Boolean, required: true }, // Indicates if this option is correct
+            optionText: { type: String, required: true }, // Options ("A", "B", "C", "D")
+            isCorrect: { type: Boolean, required: true }, 
         }
     ],
-    correctAnswer: { type: String, required: true }, // The correct option text (e.g., "A")
+    correctAnswer: { type: String, required: true }, // The correct option ( "A")
 });
 
 // Main schema for the quiz
 const quizSchema = new mongoose.Schema({
-    title: { type: String, required: true }, // Quiz title
-    description: { type: String, required: true }, // Quiz description
-    questions: [questionSchema], // Array of questions in the quiz
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, // Reference to the admin who created the quiz
-    createdAt: { type: Date, default: Date.now }, // Date of quiz creation
-    updatedAt: { type: Date, default: Date.now }, // Date of last update
+    title: { type: String, required: true }, 
+    description: { type: String, required: true }, 
+    questions: [questionSchema], 
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, 
+    createdAt: { type: Date, default: Date.now }, 
+    updatedAt: { type: Date, default: Date.now }, 
 });
 
 quizSchema.pre('save', function(next) {
@@ -27,7 +27,7 @@ quizSchema.pre('save', function(next) {
     next();
 });
 
-// Validate each question and ensure there is only one correct answer
+// Validation
 quizSchema.methods.validateQuiz = function() {
     for (let question of this.questions) {
         let correctCount = 0;

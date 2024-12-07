@@ -1,6 +1,6 @@
 const Quiz = require('../models/quiz.schema.js');
 
-// Create a new quiz (admin only)
+// Create a New 
 const createQuiz = async (req, res) => {
     const { title, description, questions } = req.body;
 
@@ -10,15 +10,15 @@ const createQuiz = async (req, res) => {
 
    
     try {
-        // Create a new quiz instance
+       
         const quiz = new Quiz({
             title,
             description,
             questions,
-            createdBy: req.user._id,  // Assuming req.user is populated with logged-in user's data
+            createdBy: req.user._id,  
         });
 
-        //  only one correct answer per question
+        //  Only one Correct Answer per Question
         await quiz.validateQuiz();  
 
         
@@ -56,7 +56,7 @@ const getQuizById = async (req, res) => {
     }
 };
 
-// Submit quiz answers and calculate score
+// Submit Quiz Answers & Calculate score
 const submitQuiz = async (req, res) => {
     const { quizId, answers, name } = req.body;
 
@@ -75,18 +75,18 @@ const submitQuiz = async (req, res) => {
         let correctAnswers = 0;
         let incorrectAnswers = 0;
 
-        // Calculate  score
+        // Calculate  Score
         quiz.questions.forEach((question, index) => {
             const userAnswer = answers[index];
             const correctAnswer = question.correctAnswer;
 
-            //  answer  correct, add 1 point
+            //   for Correct answer , add 1 Marks
             if (userAnswer === correctAnswer) {
                 score++;
                 correctAnswers++;
             } else {
-                // answer is incorrect subtract 1 point
-                score = Math.max(0, score - 1);  // Prevents score going below 0
+                // answer is incorrect subtract 1 Marks
+                score = Math.max(0, score - 1);  // Prevents Score going negative 
                 incorrectAnswers++;
             }
         });
